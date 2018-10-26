@@ -125,25 +125,32 @@ class DES:
         return key_28_shift
 
 
-
 class DESWrapper:
     def __init__(self, key):
         self.des = DES(DESWrapper.key_pre_processing(key))
 
     def encrypt(self, data):
+        config.process_bar.setValue(5)
         batch_data = DESWrapper.data_pre_processing(data)
+        config.process_bar.setValue(10)
         encrypted_data = []
         for i in range(len(batch_data)):
             encrypted_data.append(self.des.encrypt(batch_data[i]))
+            config.process_bar.setValue(10 + 80 * (i + 1) // len(batch_data))
         encrypted_data = DESWrapper.data_post_processing(encrypted_data)
+        config.process_bar.setValue(95)
         return encrypted_data
 
     def decrypt(self, data):
+        config.process_bar.setValue(5)
         batch_data = DESWrapper.data_pre_processing(data)
+        config.process_bar.setValue(10)
         decrypted_data = []
         for i in range(len(batch_data)):
             decrypted_data.append(self.des.decrypt(batch_data[i]))
+            config.process_bar.setValue(10 + 80 * (i + 1) // len(batch_data))
         decrypted_data = DESWrapper.data_post_processing(decrypted_data)
+        config.process_bar.setValue(95)
         return decrypted_data
 
     @staticmethod
@@ -197,4 +204,25 @@ class DESWrapper:
         origin_key = DESWrapper.batch_to_bits(key)
         return origin_key
 
+    @staticmethod
+    def bytes_to_str(byte_data):
+        byte_list = list(byte_data)
+        byte_str = ""
+        for i in range(len(byte_list)):
+            temp = byte_list[i]
+            for j in range(8):
+                byte_str += str(temp % 2)
+                temp //= 2
+        return byte_str
 
+    @staticmethod
+    def str_to_bytes(str_data):
+        byte_array = bytearray(len(str_data) // 8)
+        for i in range(len(str_data) // 8):
+            count = 0
+            weight = 1
+            for j in range(8):
+                count += weight * int(str_data[i * 8 + j])
+                weight *= 2
+            byte_array[i] = count
+        return byte_array
