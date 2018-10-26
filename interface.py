@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QPushButton, QApplication
 from PyQt5.QtGui import QIcon
-import algorithm
+from PyQt5.QtCore import QCoreApplication
 
 
 class Interface(QWidget):
@@ -13,10 +13,11 @@ class Interface(QWidget):
         self.setGeometry(300, 300, 800, 600)
         self.setToolTip('This is a <b>QWidget</b> widget')
 
-        btn = QPushButton('Button', self)
-        btn.setToolTip('This is a <b>QPushButton</b> widget')
-        btn.resize(80, 60)
-        btn.move((self.width() - btn.width()) / 2, (self.height() - btn.height()) / 2)
+        quit_button = QPushButton('Quit', self)
+        quit_button.setToolTip('This is a <b>QPushButton</b> widget')
+        quit_button.resize(80, 60)
+        quit_button.move((self.width() - quit_button.width()) / 2, (self.height() - quit_button.height()) / 2)
+        quit_button.clicked.connect(QCoreApplication.instance().quit)
 
         self.setWindowTitle('DES Encryption Demo')
         self.setWindowIcon(QIcon('icon.ico'))
@@ -28,4 +29,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Interface()
     sys.exit(app.exec_())
-input()
+
