@@ -189,7 +189,6 @@ class DESWrapper:
 
     @staticmethod
     def key_pre_processing(key):
-        key = bytes(key, encoding="utf-8")
         key = list(key)
         if len(key) < 8:
             key = key[:] + [0 for _ in range(8 - len(key))]
