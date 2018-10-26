@@ -124,6 +124,8 @@ class Ui_Window(object):
         QtCore.QMetaObject.connectSlotsByName(Window)
 
         Window.setWindowIcon(QtGui.QIcon(':images/icon.ico'))
+        Window.setWindowFlags(QtCore.Qt.WindowMinimizeButtonHint | QtCore.Qt.WindowCloseButtonHint)
+        Window.setFixedSize(Window.width(), Window.height())
 
         self.decrypt_button.clicked.connect(self.decryptRequest)
         self.encrypt_button.clicked.connect(self.encryptRequest)
