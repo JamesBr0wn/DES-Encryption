@@ -20,6 +20,6 @@ deploy:
   release: v$(appveyor_build_version)
   description: Build v$(appveyor_build_version) released.
   auth_token:
-    secure: GbXivnWuo0KCC5zpxEkfQydcEqkEK/0q3FmZ7xop/NFHJXXHXfSImPOH2lXp6cATo/gFvBR86/dfbZymn96v8jneJ4yRVrd/KNzrBY+chH8=
+    secure: 0OnJV3z8621wl0wUQ92rgK6Y2oUD/hSGe/6n2klsR5oA0vkXrYXCyHLcGR3dOO/Q
   artifact: DES-Encryptor
   prerelease: true
