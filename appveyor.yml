@@ -10,7 +10,7 @@ install:
 build_script:
 - cmd: c:\python37-x64\Scripts\pyinstaller.exe -F -w -i ./icon.ico ./interface.py -n DES-Encryptor.exe
 test_script:
-- cmd: c:\python37-x64\python.exe unittest test
+- cmd: c:\python37-x64\python.exe -m unittest test
 artifacts:
 - path: dist\DES-Encryptor.exe
   name: DES-Encryptor
