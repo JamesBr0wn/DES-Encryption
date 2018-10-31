@@ -130,27 +130,51 @@ class DESWrapper:
         self.des = DES(DESWrapper.key_pre_processing(key))
 
     def encrypt(self, data):
-        config.process_bar.setValue(5)
+        try:
+            config.process_bar.setValue(5)
+        except:
+            pass
         batch_data = DESWrapper.data_pre_processing(data)
-        config.process_bar.setValue(10)
+        try:
+            config.process_bar.setValue(10)
+        except:
+            pass
         encrypted_data = []
         for i in range(len(batch_data)):
             encrypted_data.append(self.des.encrypt(batch_data[i]))
-            config.process_bar.setValue(10 + 80 * (i + 1) // len(batch_data))
+            try:
+                config.process_bar.setValue(10 + 80 * (i + 1) // len(batch_data))
+            except:
+                pass
         encrypted_data = DESWrapper.data_post_processing(encrypted_data)
-        config.process_bar.setValue(95)
+        try:
+            config.process_bar.setValue(95)
+        except:
+            pass
         return encrypted_data
 
     def decrypt(self, data):
-        config.process_bar.setValue(5)
+        try:
+            config.process_bar.setValue(5)
+        except:
+            pass
         batch_data = DESWrapper.data_pre_processing(data)
-        config.process_bar.setValue(10)
+        try:
+            config.process_bar.setValue(10)
+        except:
+            pass
         decrypted_data = []
         for i in range(len(batch_data)):
             decrypted_data.append(self.des.decrypt(batch_data[i]))
-            config.process_bar.setValue(10 + 80 * (i + 1) // len(batch_data))
+            try:
+                config.process_bar.setValue(10 + 80 * (i + 1) // len(batch_data))
+            except:
+                pass
         decrypted_data = DESWrapper.data_post_processing(decrypted_data)
-        config.process_bar.setValue(95)
+        try:
+            config.process_bar.setValue(95)
+        except:
+            pass
         return decrypted_data
 
     @staticmethod
