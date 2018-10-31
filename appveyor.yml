@@ -5,6 +5,7 @@ platform: x64
 install:
 - cmd: >-
     C:\Python37-x64\Scripts\pip.exe install pyqt5
+
     C:\Python37-x64\Scripts\pip.exe install pyinstaller
 build_script:
 - cmd: c:\python37-x64\Scripts\pyinstaller.exe -F -w -i ./icon.ico ./interface.py -n DES-Encryptor.exe
