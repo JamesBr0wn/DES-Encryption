@@ -1,0 +1,23 @@
+version: 1.0.{build}
+skip_tags: true
+image: Visual Studio 2017
+platform: x64
+install:
+- cmd: >-
+    C:\Python37-x64\Scripts\pip.exe install pyqt5
+    C:\Python37-x64\Scripts\pip.exe install pyinstaller
+build_script:
+- cmd: c:\python37-x64\Scripts\pyinstaller.exe -F -w -i ./icon.ico ./interface.py -n DES-Encryptor.exe
+test: off
+artifacts:
+- path: dist\DES-Encryption.exe
+  name: DES-Encryptor
+deploy:
+- provider: GitHub
+  tag: v$(appveyor_build_version)
+  release: v$(appveyor_build_version)
+  description: Build v$(appveyor_build_version) released.
+  auth_token:
+    secure: GbXivnWuo0KCC5zpxEkfQydcEqkEK/0q3FmZ7xop/NFHJXXHXfSImPOH2lXp6cATo/gFvBR86/dfbZymn96v8jneJ4yRVrd/KNzrBY+chH8=
+  artifact: DES-Encryptor
+  prerelease: true
