@@ -164,7 +164,7 @@ class Ui_Window(object):
             msg_box.exec_()
             return
         encrypt_data = wrapper.encrypt(data)
-        self.cipher_text.setText(wrapper.bytes_to_str(encrypt_data))
+        self.cipher_text.setText(wrapper.bytes_to_hex(encrypt_data))
         config.process_bar.setValue(100)
 
     def decryptRequest(self):
@@ -176,7 +176,7 @@ class Ui_Window(object):
             msg_box.exec_()
             return
         wrapper = algorithm.DESWrapper(key)
-        data = wrapper.str_to_bytes(str(self.cipher_text.toPlainText()))
+        data = wrapper.hex_to_bytes(str(self.cipher_text.toPlainText()))
         if len(data) == 0:
             self.clearPlain()
             msg_box = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Warning, "注意", "请输入待解密数据！")

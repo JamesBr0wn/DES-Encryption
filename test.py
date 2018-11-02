@@ -18,7 +18,7 @@ class TestAlgorithm(unittest.TestCase):
         initial_data = self.data.encode()
         encrypt_data = self.wrapper.encrypt(initial_data)
         decrypt_data = self.wrapper.decrypt(encrypt_data)
-        self.assertEquals(initial_data.decode(), decrypt_data.decode()[:len(initial_data.decode())])
+        self.assertEqual(initial_data.decode(), decrypt_data.decode()[:len(initial_data.decode())])
 
 
 if __name__ == '__main__':

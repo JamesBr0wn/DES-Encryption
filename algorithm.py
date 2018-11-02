@@ -250,3 +250,11 @@ class DESWrapper:
                 weight *= 2
             byte_array[i] = count
         return byte_array
+
+    @staticmethod
+    def bytes_to_hex(byte_data):
+        return byte_data.hex().upper()
+
+    @staticmethod
+    def hex_to_bytes(hex_data):
+        return bytearray.fromhex(hex_data)
